@@ -1,28 +1,26 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import * as Pages from "pages";
+import Paths from "constants/path";
+
 export const config = [
   {
     exact: true,
-    path: "/",
-    isPublic: true,
+    path: Paths.HOME,
     element: <Pages.MainPage />,
   },
   {
     exact: true,
-    path: "/people/:id",
-    isPublic: true,
+    path: Paths.PERSON_DETAILTS,
     element: <Pages.PersonDetails />,
   },
   {
     exact: true,
-    path: "/chat",
-    isPublic: false,
+    path: Paths.CHAT,
     element: <Pages.ChatPage />,
   },
   {
     exact: true,
-    path: "/login",
-    isPublic: true,
+    path: Paths.LOGIN,
     element: <Pages.Login />,
   },
 ];
@@ -33,18 +31,17 @@ export const getRouteConfig = (value: string) => {
   return rest.path;
 };
 
-export default function ConfigedRoutes() {
-  let user = false;
+const ConfigedRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {config
-          .filter((i) => i.isPublic === !user)
-          .map((item, index) => (
-            <Route key={index} {...item} />
-          ))}
+        {config.map((item, index) => (
+          <Route key={index} {...item} />
+        ))}
         <Route path="*" element={<Pages.NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+export default ConfigedRoutes;

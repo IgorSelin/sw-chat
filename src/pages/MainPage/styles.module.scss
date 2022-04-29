@@ -4,10 +4,11 @@
   .header {
     margin-top: 50px;
     margin-bottom: 30px;
+    font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 20px;
+    align-items: center;
 
     a {
       color: #000000;
@@ -18,7 +19,14 @@
       border-bottom: 2px solid #000000;
       cursor: pointer;
     }
+
+    .navigation {
+      display: flex;
+      gap: 20px;
+      font-size: 16px;
+    }
   }
+
   .emptyList {
     text-align: center;
     display: block;
