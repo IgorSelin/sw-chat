@@ -1,0 +1,17 @@
+.messages {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
+.messageItem {
+  padding: 10px;
+  border: 1px solid #bababa;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}

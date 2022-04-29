@@ -1,0 +1,19 @@
+.sendContainer {
+  display: flex;
+  background: #cac6c6;
+  gap: 5px;
+  width: 100%;
+  padding: 6px;
+
+  input {
+    background: #ffffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 0;
+  }
+
+  button {
+    height: 100%;
+  }
+}
