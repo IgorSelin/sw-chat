@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { loadPersonDetailsRequestAction } from "store/reducers/userDetails/actions";
 import { useAppSelector } from "hooks/hooks";
 import { useParams } from "react-router-dom";
-import Preloader from "components/Preloader";
+import { Preloader } from "components";
+import { MainLayout } from "layouts";
 import { linkItems } from "./constants";
 import styles from "./styles.module.scss";
-import { MainLayout } from "layouts";
 
 const PersonDetails = () => {
   const { data, loading } = useAppSelector((s) => s.userDetails);
@@ -25,14 +25,10 @@ const PersonDetails = () => {
       <div className={`row ${styles.container}`}>
         <h4 className={styles.title}>{data.name}</h4>
         <ul className="collection">
-          {Object.entries(data).map(([key, val]: any) =>
+          {Object.entries(data).map(([key, val]) =>
             val.length > 0 ? (
-              <li
-                key={key}
-                className="collection-item"
-                style={{ width: "100%" }}
-              >
-                <span style={{ textTransform: "capitalize", fontWeight: 500 }}>
+              <li key={key} className="collection-item">
+                <span className={styles.tableKeys}>
                   {key.replaceAll("_", " ")}
                 </span>
                 :{" "}
