@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./styles.module.scss";
 
 interface IFilter {
   onChange(val: string): void;
