@@ -9,16 +9,14 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
 
   return (
     <>
-      <nav className={styles.navigation}>
-        <div className="nav-wrapper">
-          <ul id="nav-mobile" className="right">
-            <li>
+      <div className={styles.navigation}>
+
               <Link to={Paths.HOME}>Home</Link>
-            </li>
-            <li>
+   
+     
               <Link to={Paths.CHAT}>Go to chat</Link>
-            </li>
-            <li>
+          
+
               {!user ? (
                 <Link to={Paths.LOGIN}>Login</Link>
               ) : (
@@ -26,10 +24,8 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
                   Logout
                 </Link>
               )}
-            </li>
-          </ul>
-        </div>
-      </nav>
+  
+      </div>
       {children}
     </>
   );
