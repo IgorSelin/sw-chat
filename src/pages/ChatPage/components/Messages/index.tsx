@@ -15,7 +15,7 @@ const Messages = ({ messages, user }: IMessages) => {
 
   useEffect(() => {
     if (last.current) {
-      last.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      last.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [messages]);
 
