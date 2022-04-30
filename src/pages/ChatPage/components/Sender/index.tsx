@@ -7,7 +7,9 @@ interface ISender {
 
 const Sender = ({ sendMessage }: ISender) => {
   const [message, setMessage] = useState("");
+  const [isOpenKeyboard, setOpenKeyboard] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
   const ref = textareaRef.current;
 
   const submitMessageHandler = () => {
@@ -18,15 +20,21 @@ const Sender = ({ sendMessage }: ISender) => {
 
   useEffect(() => {
     const ref = textareaRef.current;
-    if (ref) {
+    if (ref && !isOpenKeyboard) {
       const scrollHeight = ref.scrollHeight;
       ref.style.height = scrollHeight + "px";
     }
-  }, [message]);
+  }, [isOpenKeyboard, message]);
 
   return (
     <form className="sendContainer">
       <textarea
+        onFocus={() => {
+          setOpenKeyboard(true);
+        }}
+        onBlur={() => {
+          setOpenKeyboard(false);
+        }}
         ref={textareaRef}
         onChange={({ target }) => setMessage(target.value)}
         value={message}
