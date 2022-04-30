@@ -7,18 +7,21 @@ import styles from "./styles.module.scss";
 interface IMessages {
   messages: IMessage[];
   user: User | null | undefined;
-  keyboardFocus: boolean;
 }
 
-const Messages = ({ messages, user, keyboardFocus }: IMessages) => {
+const Messages = ({ messages, user }: IMessages) => {
   const container = useRef<HTMLDivElement>(null);
   const last = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (last.current && !keyboardFocus) {
-      last.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [messages, keyboardFocus]);
+  const getFocus = () => {
+    setTimeout(() => {
+      if (last.current) {
+        last.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 500);
+  };
+
+  useEffect(getFocus, [messages]);
 
   const sorted = messages.sort(
     (a, b) => (new Date(a.time) as any) - (new Date(b.time) as any)

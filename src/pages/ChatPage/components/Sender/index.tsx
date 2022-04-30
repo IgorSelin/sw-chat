@@ -3,12 +3,10 @@ import "./styles.modules.scss";
 
 interface ISender {
   sendMessage(value: string): void;
-  setKeyboardView(value: boolean): void;
 }
 
-const Sender = ({ sendMessage, setKeyboardView }: ISender) => {
+const Sender = ({ sendMessage }: ISender) => {
   const [message, setMessage] = useState("");
-  const [isOpenKeyboard, setOpenKeyboard] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const ref = textareaRef.current;
@@ -27,20 +25,9 @@ const Sender = ({ sendMessage, setKeyboardView }: ISender) => {
     }
   }, [message]);
 
-  useEffect(() => {
-    setKeyboardView(isOpenKeyboard);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpenKeyboard]);
-
   return (
     <form className="sendContainer">
       <textarea
-        onFocus={() => {
-          setOpenKeyboard(true);
-        }}
-        onBlur={() => {
-          setOpenKeyboard(false);
-        }}
         ref={textareaRef}
         onChange={({ target }) => setMessage(target.value)}
         value={message}
