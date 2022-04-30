@@ -17,9 +17,8 @@ const Sender = ({ sendMessage }: ISender) => {
   useEffect(() => {
     const ref = textareaRef.current;
     if (ref) {
-      ref.style.height = "38px";
       const scrollHeight = ref.scrollHeight;
-      ref.style.height = scrollHeight + 10 + "px";
+      ref.style.height = scrollHeight + "px";
     }
   }, [message]);
 

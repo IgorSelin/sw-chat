@@ -13,6 +13,7 @@
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
+    align-self: flex-start;
     min-width: 100px;
     gap: 40px;
 
@@ -29,7 +30,11 @@
 
     .dateContainer {
       display: flex;
-      gap: 40px;
+      gap: 10px;
+    }
+    .ownerDate {
+      justify-content: flex-end;
+      width: 100%;
     }
   }
 

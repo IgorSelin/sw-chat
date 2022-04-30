@@ -25,9 +25,12 @@ const Messages = ({ messages, user }: IMessages) => {
   return (
     <div className={styles.messages} ref={container}>
       {sorted.map((item, i) => (
-        <div ref={sorted[sorted.length - 1] === sorted[i] ? last : null}>
-          <MessageItem key={i} info={item} user={user} />
-        </div>
+        <MessageItem
+          key={i}
+          info={item}
+          user={user}
+          ref={sorted[sorted.length - 1] === sorted[i] ? last : null}
+        />
       ))}
     </div>
   );
