@@ -22,16 +22,16 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
       {!isOwner && (
         <div className={styles.leftSection}>
           <img src={info.photo} alt="avatar" className={styles.avatar} />
-          <div className={styles.nameWithText}>
+          <div>
             <div>{info.name}</div>
-            <div>{info.text}</div>
+            <div className={styles.text}>{info.text}</div>
           </div>
         </div>
       )}
       <div
         className={cn(styles.dateContainer, { [styles.ownerDate]: isOwner })}
       >
-        {isOwner && <div>{info.text}</div>}
+        {isOwner && <div className={styles.text}>{info.text}</div>}
         <div className={styles.date}>{dateFormatter(info?.time)}</div>
       </div>
     </div>

@@ -8,10 +8,12 @@ interface ISender {
 const Sender = ({ sendMessage }: ISender) => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const ref = textareaRef.current;
 
   const submitMessageHandler = () => {
     sendMessage(message);
     setMessage("");
+    ref!.style.height = "36px";
   };
 
   useEffect(() => {
