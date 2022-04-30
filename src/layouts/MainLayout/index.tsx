@@ -10,23 +10,17 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
   return (
     <>
       <div className={styles.navigation}>
-
-              <Link to={Paths.HOME}>Home</Link>
-   
-     
-              <Link to={Paths.CHAT}>Go to chat</Link>
-          
-
-              {!user ? (
-                <Link to={Paths.LOGIN}>Login</Link>
-              ) : (
-                <Link to="" onClick={logout}>
-                  Logout
-                </Link>
-              )}
-  
+        <Link to={Paths.HOME}>Home</Link>
+        <Link to={Paths.CHAT}>Go to chat</Link>
+        {!user ? (
+          <Link to={Paths.LOGIN}>Login</Link>
+        ) : (
+          <Link to="" onClick={logout}>
+            Logout
+          </Link>
+        )}
       </div>
-      {children}
+      <div className={styles.content}>{children}</div>
     </>
   );
 };
