@@ -2,7 +2,9 @@
   .navigation {
     height: 8vh;
     background: #000;
-
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
