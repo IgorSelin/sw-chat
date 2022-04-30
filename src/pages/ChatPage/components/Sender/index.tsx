@@ -3,9 +3,10 @@ import "./styles.modules.scss";
 
 interface ISender {
   sendMessage(value: string): void;
+  setKeyboardView(value: boolean): void;
 }
 
-const Sender = ({ sendMessage }: ISender) => {
+const Sender = ({ sendMessage, setKeyboardView }: ISender) => {
   const [message, setMessage] = useState("");
   const [isOpenKeyboard, setOpenKeyboard] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -20,11 +21,16 @@ const Sender = ({ sendMessage }: ISender) => {
 
   useEffect(() => {
     const ref = textareaRef.current;
-    if (ref && !isOpenKeyboard) {
+    if (ref) {
       const scrollHeight = ref.scrollHeight;
       ref.style.height = scrollHeight + "px";
     }
-  }, [isOpenKeyboard, message]);
+  }, [message]);
+
+  useEffect(() => {
+    setKeyboardView(isOpenKeyboard);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpenKeyboard]);
 
   return (
     <form className="sendContainer">

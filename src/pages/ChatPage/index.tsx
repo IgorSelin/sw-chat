@@ -9,12 +9,15 @@ import { Preloader } from "components";
 import Paths from "constants/path";
 import { IMessage } from "types/chat.types";
 import styles from "./styles.module.scss";
+import { useState } from "react";
 
 const ChatPage = () => {
   const [user] = useAuthState(auth);
   const [messages, loading] = useCollectionData(
     collection(getFirestore(app), "sw-chat")
   );
+
+  const [keyboardFocus, setKeyboardFocus] = useState(false);
 
   const sendMessage = async (value: string) => {
     try {
@@ -37,8 +40,15 @@ const ChatPage = () => {
   ) : (
     <MainLayout>
       <div className={styles.container}>
-        <Messages messages={messages as IMessage[]} user={user} />
-        <Sender sendMessage={sendMessage} />
+        <Messages
+          messages={messages as IMessage[]}
+          user={user}
+          keyboardFocus={keyboardFocus}
+        />
+        <Sender
+          sendMessage={sendMessage}
+          setKeyboardView={(value) => setKeyboardFocus(value)}
+        />
       </div>
     </MainLayout>
   );
