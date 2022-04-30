@@ -11,7 +11,10 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
     <>
       <nav className={styles.navigation}>
         <div className="nav-wrapper">
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <ul id="nav-mobile" className="right">
+            <li>
+              <Link to={Paths.HOME}>Home</Link>
+            </li>
             <li>
               <Link to={Paths.CHAT}>Go to chat</Link>
             </li>
