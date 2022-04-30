@@ -8,7 +8,7 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
   const [user] = useAuthState(auth);
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.navigation}>
         <Link to={Paths.HOME}>Home</Link>
         <Link to={Paths.CHAT}>Go to chat</Link>
@@ -21,7 +21,7 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
         )}
       </div>
       {children}
-    </>
+    </div>
   );
 };
 

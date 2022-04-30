@@ -1,15 +1,20 @@
-.navigation {
-  height: 8vh;
-  background: #000;
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  .navigation {
+    height: 8vh;
+    background: #000;
 
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 20px;
-  font-size: 16px;
-  gap: 16px;
-  a {
-    text-decoration: none;
-    color: #039be5;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    font-size: 16px;
+    gap: 16px;
+    a {
+      text-decoration: none;
+      color: #039be5;
+    }
   }
 }
