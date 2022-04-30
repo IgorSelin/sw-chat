@@ -20,7 +20,7 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
           </Link>
         )}
       </div>
-      <div className={styles.content}>{children}</div>
+      {children}
     </>
   );
 };
