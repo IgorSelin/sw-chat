@@ -4,8 +4,23 @@
   align-items: center;
   height: 100vh;
 
-  button {
-    margin: 20px 0px;
-    display: block;
+  .btnContainer {
+    background: rgb(177, 177, 177);
+    padding: 40px 80px;
+    border-radius: 4px;
+
+    .logWithGoogleBtn {
+      margin: 20px 0px;
+      display: block;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .btnContainer {
+      .logWithGoogleBtn {
+        font-size: 14px;
+        height: unset;
+      }
+    }
   }
 }

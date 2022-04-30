@@ -26,18 +26,16 @@ const app = initializeApp({
   appId: "1:889298841323:web:49e12f3e9737e5f4ab58ae",
   measurementId: "G-E2SB85WQBW",
 });
+
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const googleProvider = new GoogleAuthProvider();
-
 const signInWithGoogle = async () => {
   try {
-    const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
+    const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
+    const { docs } = await getDocs(q);
+    if (docs.length === 0) {
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name: user.displayName,
@@ -45,18 +43,16 @@ const signInWithGoogle = async () => {
         email: user.email,
       });
     }
-  } catch (err: any) {
+  } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-  } catch (err: any) {
+  } catch (err) {
     console.error(err);
-    alert(err.message);
   }
 };
 
@@ -67,7 +63,7 @@ const registerWithEmailAndPassword = async (
 ) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+    const { user } = res;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
@@ -76,17 +72,14 @@ const registerWithEmailAndPassword = async (
     });
   } catch (err: any) {
     console.error(err);
-    alert(err.message);
   }
 };
 
 const sendPasswordReset = async (email: string) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
   } catch (err: any) {
     console.error(err);
-    alert(err.message);
   }
 };
 
@@ -97,6 +90,7 @@ const logout = () => {
 export {
   auth,
   db,
+  app,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
