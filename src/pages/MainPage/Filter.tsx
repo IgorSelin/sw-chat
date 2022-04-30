@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./styles.module.scss";
 
 interface IFilter {
   onChange(val: string): void;
@@ -8,7 +9,7 @@ interface IFilter {
 export default function Filter({ onChange, searchWord }: IFilter) {
   return (
     <div className="row">
-      <div className="input-field col s6">
+      <div className="input-field col">
         <input
           value={searchWord}
           onChange={({ target }) => onChange(target.value)}

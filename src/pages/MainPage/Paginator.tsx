@@ -11,7 +11,10 @@ const Paginator = ({ count, onChange, page }: IPaginator) => {
   const totalPages = Math.ceil(count / LIMIT);
   if (!totalPages) return null;
   return (
-    <ul className="pagination">
+    <ul
+      className="pagination"
+      style={{ display: "flex", marginBottom: "15px" }}
+    >
       {page - 1 > 0 ? (
         <li className="disabled">
           <i className="material-icons" onClick={() => onChange(page - 1)}>
