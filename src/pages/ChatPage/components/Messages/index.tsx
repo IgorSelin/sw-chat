@@ -1,4 +1,5 @@
 import { User } from "firebase/auth";
+import { useRef, useEffect } from "react";
 import { IMessage } from "types/chat.types";
 import MessageItem from "./MessageItem";
 import styles from "./styles.module.scss";
@@ -9,13 +10,24 @@ interface IMessages {
 }
 
 const Messages = ({ messages, user }: IMessages) => {
+  const container = useRef<HTMLDivElement>(null);
+  const last = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (last.current) {
+      last.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [messages]);
+
   const sorted = messages.sort(
     (a, b) => (new Date(a.time) as any) - (new Date(b.time) as any)
   );
   return (
-    <div className={styles.messages}>
+    <div className={styles.messages} ref={container}>
       {sorted.map((item, i) => (
-        <MessageItem key={i} info={item} user={user} />
+        <div ref={sorted[sorted.length - 1] === sorted[i] ? last : null}>
+          <MessageItem key={i} info={item} user={user} />
+        </div>
       ))}
     </div>
   );
