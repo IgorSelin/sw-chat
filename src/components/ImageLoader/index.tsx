@@ -11,7 +11,7 @@ const ImageLoader = ({ src }: TProps) => {
   return (
     <div className={styles.container}>
       {loading && <BasicLoader />}
-      {src ? (
+      {src && (
         <img
           src={src}
           alt="upload"
@@ -20,7 +20,7 @@ const ImageLoader = ({ src }: TProps) => {
             setLoading(false);
           }}
         />
-      ) : null}
+      )}
     </div>
   );
 };
