@@ -18,7 +18,7 @@ const Messages = ({ messages, user }: IMessages) => {
       if (last.current) {
         last.current.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    }, 200);
+    }, 500);
   };
 
   useEffect(getFocus, [messages]);
