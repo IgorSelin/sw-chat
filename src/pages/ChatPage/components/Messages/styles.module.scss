@@ -16,7 +16,7 @@
     justify-content: space-between;
     align-self: flex-start;
     min-width: 80px;
-    gap: 40px;
+    gap: 10px;
 
     .leftSection {
       display: flex;
@@ -39,7 +39,6 @@
       border-radius: 4px;
       height: 200px;
       width: 200px;
-      z-index: 1;
 
       .fullSize {
         background-color: rgba(0, 0, 0, 0.5);
@@ -49,6 +48,7 @@
         height: 100%;
         width: 100%;
         padding: 10px;
+        z-index: 10;
       }
 
       img {

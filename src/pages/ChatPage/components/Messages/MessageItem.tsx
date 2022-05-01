@@ -16,6 +16,17 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
   const [selectedPhoto, setFullSize] = useState<string | null>(null);
   const isOwner = info.uid === user!.uid;
 
+  const photoSection = () => (
+    <div
+      className={cn(styles.photoContainer, {
+        [styles.fullSize]: selectedPhoto === info.uid,
+      })}
+      onClick={() => setFullSize((prev) => (prev ? null : info.uid))}
+    >
+      <ImageLoader src={info.file} />
+    </div>
+  );
+
   return (
     <div
       className={cn(styles.messageItem, { [styles.owner]: isOwner })}
@@ -31,18 +42,10 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
             <div>{info.name}</div>
             <div className={styles.text}>{info.text}</div>
           </div>
-          {info.file && (
-            <div
-              className={cn(styles.photoContainer, {
-                [styles.fullSize]: selectedPhoto === info.uid,
-              })}
-              onClick={() => setFullSize((prev) => (prev ? null : info.uid))}
-            >
-              <ImageLoader src={info.file} />
-            </div>
-          )}
+          {info.file && photoSection()}
         </div>
       )}
+      {isOwner && info.file && photoSection()}
       <div
         className={cn(styles.dateContainer, { [styles.ownerDate]: isOwner })}
       >
