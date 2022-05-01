@@ -1,0 +1,26 @@
+.container {
+  margin-top: 60px;
+  margin-left: 20px;
+  .title {
+    font-size: 30px;
+  }
+  .usersContainer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .userItem {
+      text-transform: uppercase;
+      max-width: max-content;
+      font-weight: 400;
+      border-bottom: 1px solid transparent;
+      transition: 0.2 linear all;
+
+      &:hover {
+        border-bottom: 1px solid #000;
+        cursor: pointer;
+      }
+    }
+  }
+}

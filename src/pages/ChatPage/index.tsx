@@ -1,7 +1,7 @@
 import { MainLayout } from "layouts";
 import { Messages, Sender } from "./components";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { app, auth, db } from "my-firebase";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -15,14 +15,15 @@ import { useState } from "react";
 
 const ChatPage = () => {
   const [user] = useAuthState(auth);
+  const { id } = useParams();
   const [photoLoading, setPhotoLoading] = useState(false);
   const [messages, loading] = useCollectionData(
-    collection(getFirestore(app), ECollections.Main)
+    collection(getFirestore(app), id || ECollections.Main)
   );
 
   const sendMessage = async (value: string) => {
     try {
-      await addDoc(collection(db, ECollections.Main), {
+      await addDoc(collection(db, id || ECollections.Main), {
         name: user!.displayName,
         text: value,
         time: new Date().toISOString(),
@@ -41,7 +42,7 @@ const ChatPage = () => {
       const storageRef = ref(storage, value.name);
       uploadBytes(storageRef, value).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
-          addDoc(collection(db, ECollections.Main), {
+          addDoc(collection(db, id || ECollections.Main), {
             name: user!.displayName,
             time: new Date().toISOString(),
             file: url,

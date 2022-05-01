@@ -14,7 +14,7 @@ const LoginPage = () => {
     if (loading) {
       <HorizonalLoader />;
     }
-    if (user) navigate(Paths.CHAT);
+    if (user) navigate(Paths.MAIN_CHAT);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
 

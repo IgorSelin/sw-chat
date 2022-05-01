@@ -11,7 +11,8 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
     <div className={styles.container}>
       <div className={styles.navigation}>
         <Link to={Paths.HOME}>Home</Link>
-        <Link to={Paths.CHAT}>Go to chat</Link>
+        <Link to={Paths.USERS}>All users</Link>
+        <Link to={Paths.MAIN_CHAT}>Go to chat</Link>
         {!user ? (
           <Link to={Paths.LOGIN}>Login</Link>
         ) : (

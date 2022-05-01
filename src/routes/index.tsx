@@ -15,8 +15,18 @@ export const config = [
   },
   {
     exact: true,
-    path: Paths.CHAT,
+    path: Paths.MAIN_CHAT,
     element: <Pages.ChatPage />,
+  },
+  {
+    exact: true,
+    path: Paths.USERS,
+    element: <Pages.AllUsers />,
+  },
+  {
+    exact: true,
+    path: Paths.SELECTED_CHAT,
+    element: <Pages.SelectedChat />,
   },
   {
     exact: true,
