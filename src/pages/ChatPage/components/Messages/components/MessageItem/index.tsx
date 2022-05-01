@@ -2,9 +2,9 @@ import { forwardRef, useState } from "react";
 import { User } from "firebase/auth";
 import { IMessage } from "types/chat.types";
 import { dateFormatter } from "utils/dateFormatter";
+import { ImageLoader } from "components";
 import styles from "./styles.module.scss";
 import cn from "classnames";
-import ImageLoader from "components/ImageLoader";
 
 interface IMessageItem {
   info: IMessage;
@@ -13,6 +13,8 @@ interface IMessageItem {
 }
 
 const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
+  const { name, text, time, photo, file, uid: messageID } = info;
+
   const [selectedPhoto, setFullSize] = useState<string | null>(null);
   const isOwner = info.uid === user!.uid;
 
@@ -21,7 +23,7 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
       className={cn(styles.photoContainer, {
         [styles.fullSize]: selectedPhoto === info.uid,
       })}
-      onClick={() => setFullSize((prev) => (prev ? null : info.uid))}
+      onClick={() => setFullSize((prev) => (prev ? null : messageID))}
     >
       <ImageLoader src={info.file} />
     </div>
@@ -35,22 +37,22 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
       {!isOwner && (
         <div
           className={styles.leftSection}
-          style={{ flexDirection: info.file ? "column" : "row" }}
+          style={{ flexDirection: file ? "column" : "row" }}
         >
-          <img src={info.photo} alt="avatar" className={styles.avatar} />
+          <img src={photo} alt="avatar" className={styles.avatar} />
           <div>
-            <div>{info.name}</div>
-            <div className={styles.text}>{info.text}</div>
+            <div>{name}</div>
+            <div className={styles.text}>{text}</div>
           </div>
-          {info.file && photoSection()}
+          {file && photoSection()}
         </div>
       )}
-      {isOwner && info.file && photoSection()}
+      {isOwner && file && photoSection()}
       <div
         className={cn(styles.dateContainer, { [styles.ownerDate]: isOwner })}
       >
-        {isOwner && <div className={styles.text}>{info.text}</div>}
-        <div className={styles.date}>{dateFormatter(info?.time)}</div>
+        {isOwner && <div className={styles.text}>{text}</div>}
+        <div className={styles.date}>{dateFormatter(time)}</div>
       </div>
     </div>
   );
