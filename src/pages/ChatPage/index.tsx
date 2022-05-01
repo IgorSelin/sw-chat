@@ -45,6 +45,7 @@ const ChatPage = () => {
             name: user!.displayName,
             time: new Date().toISOString(),
             file: url,
+            photo: user!.photoURL,
             uid: user?.uid,
           }).then(() => {
             setPhotoLoading(false);
