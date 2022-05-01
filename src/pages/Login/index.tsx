@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { auth, signInWithGoogle } from "my-firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { Preloader } from "components";
+import { HorizonalLoader } from "components";
 import Paths from "constants/path";
 import { MainLayout } from "layouts";
 
@@ -12,7 +12,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) {
-      <Preloader />;
+      <HorizonalLoader />;
     }
     if (user) navigate(Paths.CHAT);
     // eslint-disable-next-line react-hooks/exhaustive-deps

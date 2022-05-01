@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "hooks/hooks";
-import Preloader from "components/Preloader";
+import { HorizonalLoader } from "components";
 import styles from "./styles.module.scss";
 
 const TablePeople = () => {
   const { loading, data } = useAppSelector(({ people }) => people);
 
-  if (loading) return <Preloader />;
+  if (loading) return <HorizonalLoader />;
   if (data!.results.length === 0)
     return <span className={styles.emptyList}>Emply list</span>;
 

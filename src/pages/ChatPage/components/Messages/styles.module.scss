@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 15px;
   overflow-y: scroll;
-  margin: 50px 0px;
+  margin: 55px 0px;
 
   .messageItem {
     padding: 10px;
@@ -29,6 +29,29 @@
         height: 40px;
         width: 40px;
         border-radius: 50%;
+      }
+    }
+
+    .photoContainer {
+      box-sizing: border-box;
+      border: 1px solid #bababa;
+      border-radius: 4px;
+
+      .fullSize {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+      }
+
+      img {
+        height: 200px;
+        width: 200px;
+        cursor: pointer;
+        object-fit: contain;
       }
     }
 

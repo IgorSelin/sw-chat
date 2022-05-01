@@ -1,17 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import "./styles.modules.scss";
+import styles from "./styles.module.scss";
+import galleryIcon from "assets/img/gallery.webp";
 
 interface ISender {
   sendMessage(value: string): void;
+  getPhoto(file: any): void;
+  photoLoading: boolean;
 }
 
-const Sender = ({ sendMessage }: ISender) => {
+const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
   const [message, setMessage] = useState("");
+  const [imageAsFile, setImageAsFile] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
   const ref = textareaRef.current;
 
+  const handleImageAsFile = (e: any) => {
+    const image = e.target.files[0];
+    setImageAsFile(image);
+  };
+
   const submitMessageHandler = () => {
+    if (!message.length) {
+      return;
+    }
     sendMessage(message);
     setMessage("");
     ref!.style.height = "36px";
@@ -25,16 +36,38 @@ const Sender = ({ sendMessage }: ISender) => {
     }
   }, [message]);
 
+  useEffect(() => {
+    if (imageAsFile) {
+      getPhoto(imageAsFile);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageAsFile]);
+
   return (
-    <form className="sendContainer">
+    <form className={styles.sendContainer}>
       <textarea
         ref={textareaRef}
         onChange={({ target }) => setMessage(target.value)}
         value={message}
       />
-      <button type="button" className="btn" onClick={submitMessageHandler}>
+      <button
+        disabled={photoLoading}
+        type="button"
+        className="btn"
+        onClick={submitMessageHandler}
+      >
         Send
       </button>
+      <label htmlFor="upload-photo">
+        <img src={galleryIcon} alt="open gallery" />
+      </label>
+      <input
+        name="photo"
+        id="upload-photo"
+        className={styles.uploadPhoto}
+        onChange={handleImageAsFile}
+        type="file"
+      />
     </form>
   );
 };

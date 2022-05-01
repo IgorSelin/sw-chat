@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { User } from "firebase/auth";
 import { IMessage } from "types/chat.types";
 import { dateFormatter } from "utils/dateFormatter";
@@ -12,6 +12,7 @@ interface IMessageItem {
 }
 
 const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
+  const [selectedPhoto, setFullSize] = useState<string | null>(null);
   const isOwner = info.uid === user!.uid;
 
   return (
@@ -26,6 +27,18 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
             <div>{info.name}</div>
             <div className={styles.text}>{info.text}</div>
           </div>
+        </div>
+      )}
+      {info.file && (
+        <div
+          className={styles.photoContainer}
+          onClick={() => setFullSize((prev) => (prev ? null : info.uid))}
+        >
+          <img
+            src={info.file}
+            className={cn({ [styles.fullSize]: selectedPhoto === info.uid })}
+            alt="upload"
+          />
         </div>
       )}
       <div

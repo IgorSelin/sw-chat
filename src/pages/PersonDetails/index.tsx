@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { loadPersonDetailsRequestAction } from "store/reducers/userDetails/actions";
 import { useAppSelector } from "hooks/hooks";
 import { useParams } from "react-router-dom";
-import { Preloader } from "components";
+import { HorizonalLoader } from "components";
 import { MainLayout } from "layouts";
 import { linkItems } from "./constants";
 import styles from "./styles.module.scss";
@@ -18,7 +18,7 @@ const PersonDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  if (loading) return <Preloader />;
+  if (loading) return <HorizonalLoader />;
 
   return (
     <MainLayout>

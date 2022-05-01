@@ -4,4 +4,5 @@ export interface IMessage {
   time: string | number | Date;
   photo: string;
   uid: string;
+  file?: string;
 }

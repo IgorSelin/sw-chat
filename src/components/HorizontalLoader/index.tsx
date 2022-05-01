@@ -1,9 +1,9 @@
 import React from "react";
 
-const Preloader = () => (
+const HorizonalLoader = () => (
   <div className="progress">
     <div className="indeterminate"></div>
   </div>
 );
 
-export default Preloader;
+export default HorizonalLoader;
