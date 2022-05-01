@@ -45,10 +45,11 @@
         position: absolute;
         top: 0;
         left: 0;
-        height: 100%;
         width: 100%;
         padding: 10px;
         z-index: 10;
+        height: 100vh;
+        overflow: hidden;
       }
 
       img {
@@ -58,14 +59,17 @@
         object-fit: cover;
       }
     }
+
     .fullSize {
       background-color: rgba(0, 0, 0, 0.5);
       position: absolute;
       top: 0;
       left: 0;
-      height: 100%;
       width: 100%;
       z-index: 10;
+      height: 100vh;
+      overflow: hidden;
+
       img {
         height: 100%;
         width: 100%;
