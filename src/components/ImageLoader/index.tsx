@@ -10,7 +10,11 @@ const ImageLoader = ({ src }: TProps) => {
 
   return (
     <div className={styles.container}>
-      {loading && <BasicLoader />}
+      {loading && (
+        <div className={styles.loader}>
+          <BasicLoader />
+        </div>
+      )}
       {src && (
         <img
           src={src}
