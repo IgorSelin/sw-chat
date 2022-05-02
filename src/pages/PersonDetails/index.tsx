@@ -18,30 +18,32 @@ const PersonDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  if (loading) return <HorizonalLoader />;
-
   return (
     <MainLayout>
-      <div className={`row ${styles.container}`}>
-        <h4 className={styles.title}>{data.name}</h4>
-        <ul className="collection">
-          {Object.entries(data).map(([key, val]) =>
-            val.length > 0 ? (
-              <li key={key} className="collection-item">
-                <span className={styles.tableKeys}>
-                  {key.replaceAll("_", " ")}
-                </span>
-                :{" "}
-                {linkItems.includes(key) ? (
-                  <a href={typeof val === "string" ? val : val[0]}>link to</a>
-                ) : (
-                  val
-                )}
-              </li>
-            ) : null
-          )}
-        </ul>
-      </div>
+      {loading ? (
+        <HorizonalLoader />
+      ) : (
+        <div className={`row ${styles.container}`}>
+          <h4 className={styles.title}>{data.name}</h4>
+          <ul className="collection">
+            {Object.entries(data).map(([key, val]) =>
+              val.length > 0 ? (
+                <li key={key} className="collection-item">
+                  <span className={styles.tableKeys}>
+                    {key.replaceAll("_", " ")}
+                  </span>
+                  :{" "}
+                  {linkItems.includes(key) ? (
+                    <a href={typeof val === "string" ? val : val[0]}>link to</a>
+                  ) : (
+                    val
+                  )}
+                </li>
+              ) : null
+            )}
+          </ul>
+        </div>
+      )}
     </MainLayout>
   );
 };

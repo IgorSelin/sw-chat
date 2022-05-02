@@ -11,26 +11,27 @@ const LoginPage = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    if (loading) {
-      <HorizonalLoader />;
-    }
     if (user) navigate(Paths.MAIN_CHAT);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, loading]);
+  }, [user]);
 
   return (
     <MainLayout>
-      <div className={styles.container}>
-        <div className={styles.btnContainer}>
-          <button
-            className={`btn ${styles.logWithGoogleBtn}`}
-            type="button"
-            onClick={signInWithGoogle}
-          >
-            Login with Google
-          </button>
+      {loading ? (
+        <HorizonalLoader />
+      ) : (
+        <div className={styles.container}>
+          <div className={styles.btnContainer}>
+            <button
+              className={`btn ${styles.logWithGoogleBtn}`}
+              type="button"
+              onClick={signInWithGoogle}
+            >
+              Login with Google
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </MainLayout>
   );
 };
