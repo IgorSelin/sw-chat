@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { MainLayout } from "layouts";
 import { Messages, Sender } from "./components";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -8,10 +9,9 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { BasicLoader, HorizonalLoader } from "components";
 import Paths from "constants/path";
 import { IMessage } from "types/chat.types";
-import styles from "./styles.module.scss";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { ECollections } from "constants/firebase";
-import { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 const ChatPage = () => {
   const [user] = useAuthState(auth);
@@ -67,19 +67,21 @@ const ChatPage = () => {
       {loading ? (
         <HorizonalLoader />
       ) : (
-        <div className={styles.container}>
-          {photoLoading && (
-            <div className={styles.loaderContainer}>
-              <BasicLoader />
-            </div>
-          )}
-          <Messages messages={messages as IMessage[]} user={user} />
-          <Sender
-            sendMessage={sendMessage}
-            getPhoto={uploadPhoto}
-            photoLoading={photoLoading}
-          />
-        </div>
+        user && (
+          <div className={styles.container}>
+            {photoLoading && (
+              <div className={styles.loaderContainer}>
+                <BasicLoader />
+              </div>
+            )}
+            <Messages messages={messages as IMessage[]} user={user} />
+            <Sender
+              sendMessage={sendMessage}
+              getPhoto={uploadPhoto}
+              photoLoading={photoLoading}
+            />
+          </div>
+        )
       )}
     </MainLayout>
   );

@@ -53,20 +53,20 @@ const AllUsers = () => {
               <div className={styles.title}>Users:</div>
               <div className={styles.usersContainer}>
                 {users
-                  ?.filter(({ uid }: any) => uid !== user?.uid)
-                  .map((u: any, i: number) => (
+                  ?.filter(({ uid }) => uid !== user?.uid)
+                  .map(({ uid: id, name, photo }) => (
                     <div
-                      key={i}
-                      onClick={() => addRelHandler(u.uid)}
+                      key={id}
+                      onClick={() => addRelHandler(id)}
                       className={styles.userItem}
                     >
                       <div>
-                      {true ? (
-                        <i className="material-icons">person</i>
-                      ) : (
-                        <img className={styles.avatar} src={""} alt="" />
-                      )}
-                      {u.name}
+                        {!photo ? (
+                          <i className="material-icons">person</i>
+                        ) : (
+                          <img className={styles.avatar} src={photo} alt="" />
+                        )}
+                        {name}
                       </div>
                       <i className="material-icons">message</i>
                     </div>

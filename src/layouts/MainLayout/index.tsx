@@ -4,27 +4,27 @@ import { Link } from "react-router-dom";
 import Paths from "constants/path";
 import styles from "./styles.module.scss";
 
-const MainLayout = ({ children }: { children: JSX.Element }) => {
+const MainLayout = ({ children }: { children?: JSX.Element | null }) => {
   const [user] = useAuthState(auth);
 
   return (
     <div className={styles.container}>
       <div className={styles.navigation}>
         <div>
-        <Link to={Paths.HOME}>Home</Link>
+          <Link to={Paths.HOME}>Home</Link>
         </div>
-<div>
-        {!user ? (
-          <Link to={Paths.LOGIN}>Login</Link>
-        ) : (
-          <>
-            <Link to={Paths.USERS}>All users</Link>
-            <Link to={Paths.MAIN_CHAT}>Main chat</Link>
-            <Link to="" onClick={logout}>
-              Logout
-            </Link>
-          </>
-        )}
+        <div>
+          {!user ? (
+            <Link to={Paths.LOGIN}>Login</Link>
+          ) : (
+            <>
+              <Link to={Paths.USERS}>All users</Link>
+              <Link to={Paths.MAIN_CHAT}>Main chat</Link>
+              <Link to="" onClick={logout}>
+                Logout
+              </Link>
+            </>
+          )}
         </div>
       </div>
       <div className={styles.content}>{children}</div>
