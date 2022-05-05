@@ -10,6 +10,7 @@ import { MainLayout } from "layouts";
 const LoginPage = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (user) navigate(Paths.MAIN_CHAT);
     // eslint-disable-next-line react-hooks/exhaustive-deps

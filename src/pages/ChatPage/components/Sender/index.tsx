@@ -40,7 +40,7 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
     if (imageAsFile) {
       getPhoto(imageAsFile);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageAsFile]);
 
   return (
@@ -64,6 +64,7 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
       <input
         name="photo"
         id="upload-photo"
+        accept="image/png, image/gif, image/jpeg"
         className={styles.uploadPhoto}
         onChange={handleImageAsFile}
         type="file"

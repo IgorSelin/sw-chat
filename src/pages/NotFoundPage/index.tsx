@@ -1,4 +1,3 @@
-import React from "react";
 import { MainLayout } from "layouts";
 import styles from "./styles.module.scss";
 

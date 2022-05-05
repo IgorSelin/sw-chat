@@ -1,11 +1,9 @@
-import React from "react";
-
 interface IFilter {
   onChange(val: string): void;
   searchWord: string;
 }
 
-export default function Filter({ onChange, searchWord }: IFilter) {
+const Filter = ({ onChange, searchWord }: IFilter) => {
   return (
     <div className="row">
       <div className="input-field col">
@@ -23,4 +21,6 @@ export default function Filter({ onChange, searchWord }: IFilter) {
       </div>
     </div>
   );
-}
+};
+
+export default Filter;

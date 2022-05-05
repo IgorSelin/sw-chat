@@ -46,9 +46,7 @@ const AllUsers = () => {
         <HorizonalLoader />
       ) : (
         <div className={styles.container}>
-          {!user ? (
-            <Navigate to={Paths.LOGIN} replace />
-          ) : (
+          {user ? (
             <>
               <div className={styles.title}>Users:</div>
               <div className={styles.usersContainer}>
@@ -61,10 +59,10 @@ const AllUsers = () => {
                       className={styles.userItem}
                     >
                       <div>
-                        {!photo ? (
-                          <i className="material-icons">person</i>
-                        ) : (
+                        {photo ? (
                           <img className={styles.avatar} src={photo} alt="" />
+                        ) : (
+                          <i className="material-icons">person</i>
                         )}
                         {name}
                       </div>
@@ -73,6 +71,8 @@ const AllUsers = () => {
                   ))}
               </div>
             </>
+          ) : (
+            <Navigate to={Paths.LOGIN} replace />
           )}
         </div>
       )}

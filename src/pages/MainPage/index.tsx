@@ -15,7 +15,8 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(loadPeopleDataRequestAction(params.page, params.searchWord));
-  }, [dispatch, params, setParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
 
   return (
     <MainLayout>
