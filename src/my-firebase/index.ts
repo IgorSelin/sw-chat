@@ -1,28 +1,28 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
   signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+  signOut
+} from 'firebase/auth';
 import {
   getFirestore,
   query,
   getDocs,
   collection,
   where,
-  addDoc,
-} from "firebase/firestore";
+  addDoc
+} from 'firebase/firestore';
 
 const app = initializeApp({
-  apiKey: "AIzaSyADsG2JaINEy9v49fTVF6V_ikMfvFuTqkY",
-  authDomain: "star-wars-chat-319a9.firebaseapp.com",
-  projectId: "star-wars-chat-319a9",
-  storageBucket: "star-wars-chat-319a9.appspot.com",
-  messagingSenderId: "889298841323",
-  appId: "1:889298841323:web:49e12f3e9737e5f4ab58ae",
-  measurementId: "G-E2SB85WQBW",
+  apiKey: 'AIzaSyADsG2JaINEy9v49fTVF6V_ikMfvFuTqkY',
+  authDomain: 'star-wars-chat-319a9.firebaseapp.com',
+  projectId: 'star-wars-chat-319a9',
+  storageBucket: 'star-wars-chat-319a9.appspot.com',
+  messagingSenderId: '889298841323',
+  appId: '1:889298841323:web:49e12f3e9737e5f4ab58ae',
+  measurementId: 'G-E2SB85WQBW'
 });
 
 const auth = getAuth(app);
@@ -31,15 +31,15 @@ const db = getFirestore(app);
 const signInWithGoogle = async () => {
   try {
     const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const q = query(collection(db, 'users'), where('uid', '==', user.uid));
     const { docs } = await getDocs(q);
     if (docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+      await addDoc(collection(db, 'users'), {
         uid: user.uid,
         name: user.displayName,
-        authProvider: "google",
+        authProvider: 'google',
         email: user.email,
-        photo: user.photoURL,
+        photo: user.photoURL
       });
     }
   } catch (err) {

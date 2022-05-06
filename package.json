@@ -58,6 +58,10 @@
   "devDependencies": {
     "@types/firebase": "^3.2.1",
     "@types/history": "^5.0.0",
-    "@types/uuid": "^8.3.4"
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.14.0",
+    "eslint-plugin-react": "^7.29.4"
   }
 }

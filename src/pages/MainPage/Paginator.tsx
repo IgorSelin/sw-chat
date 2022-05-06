@@ -10,21 +10,20 @@ const Paginator = ({ count, onChange, page }: IPaginator) => {
   if (!totalPages) return null;
   return (
     <ul
-      className="pagination"
-      style={{ display: "flex", marginBottom: "15px" }}
+      className='pagination'
+      style={{ display: 'flex', marginBottom: '15px' }}
     >
       {page - 1 > 0 ? (
-        <li className="disabled">
-          <i className="material-icons" onClick={() => onChange(page - 1)}>
+        <li className='disabled'>
+          <i className='material-icons' onClick={() => onChange(page - 1)}>
             chevron_left
           </i>
         </li>
       ) : null}
-      {Array.from({ length: totalPages }, (_, index) => index + 1)?.map((p) => {
-        return (
-          <li className={p !== page ? "waves-effect" : "active"} key={p}>
+      {Array.from({ length: totalPages }, (_, index) => index + 1)?.map((p) => (
+          <li className={p !== page ? 'waves-effect' : 'active'} key={p}>
             <a
-              href="#!"
+              href='#!'
               onClick={(e) => {
                 e.preventDefault();
                 onChange(p);
@@ -33,11 +32,10 @@ const Paginator = ({ count, onChange, page }: IPaginator) => {
               {p}
             </a>
           </li>
-        );
-      })}
+        ))}
       {page + 1 < totalPages ? (
-        <li className="waves-effect" onClick={() => onChange(page + 1)}>
-          <i className="material-icons">chevron_right</i>
+        <li className='waves-effect' onClick={() => onChange(page + 1)}>
+          <i className='material-icons'>chevron_right</i>
         </li>
       ) : null}
     </ul>

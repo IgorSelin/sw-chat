@@ -1,15 +1,15 @@
-import Paths from "constants/path";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useState } from "react";
-import { app, auth, db } from "my-firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { HorizonalLoader } from "components";
-import { Navigate, useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { ECollections } from "constants/firebase";
-import { MainLayout } from "layouts";
-import styles from "./styles.module.scss";
+import Paths from 'constants/path';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useState } from 'react';
+import { app, auth, db } from 'my-firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { HorizonalLoader } from 'components';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import { ECollections } from 'constants/firebase';
+import { MainLayout } from 'layouts';
+import styles from './styles.module.scss';
 
 const AllUsers = () => {
   const [user] = useAuthState(auth);
@@ -34,7 +34,7 @@ const AllUsers = () => {
       const id = uuidv4();
       await addDoc(collection(db, ECollections.Relations), {
         pair: [user?.uid, value],
-        path: id,
+        path: id
       });
       navigate(`/chat/${id}`);
     }
@@ -60,13 +60,13 @@ const AllUsers = () => {
                     >
                       <div>
                         {photo ? (
-                          <img className={styles.avatar} src={photo} alt="" />
+                          <img className={styles.avatar} src={photo} alt='' />
                         ) : (
-                          <i className="material-icons">person</i>
+                          <i className='material-icons'>person</i>
                         )}
                         {name}
                       </div>
-                      <i className="material-icons">message</i>
+                      <i className='material-icons'>message</i>
                     </div>
                   ))}
               </div>

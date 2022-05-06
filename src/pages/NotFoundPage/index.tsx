@@ -1,5 +1,5 @@
-import { MainLayout } from "layouts";
-import styles from "./styles.module.scss";
+import { MainLayout } from 'layouts';
+import styles from './styles.module.scss';
 
 const NotFound = () => (
   <MainLayout>

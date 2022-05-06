@@ -1,18 +1,18 @@
 import {
   ELoadPeople,
   loadPeopleActionTypes,
-  IInitialPeopleState,
-} from "store/reducers/people/types";
+  IInitialPeopleState
+} from 'store/reducers/people/types';
 
 const initialState: IInitialPeopleState = {
   page: 1,
-  searchWord: "",
+  searchWord: '',
   loading: false,
-  error: "",
+  error: '',
   data: {
     count: 0,
-    results: [],
-  },
+    results: []
+  }
 };
 
 export const peopleReducer = (
@@ -26,19 +26,19 @@ export const peopleReducer = (
         ...state,
         page,
         searchWord,
-        loading: true,
+        loading: true
       };
     case ELoadPeople.success:
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        data: action.payload
       };
     case ELoadPeople.faiture:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
     default:
       return state;

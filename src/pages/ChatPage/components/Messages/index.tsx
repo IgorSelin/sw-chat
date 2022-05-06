@@ -1,8 +1,8 @@
-import { User } from "firebase/auth";
-import { useRef, useEffect } from "react";
-import { IMessage } from "types/chat.types";
-import { MessageItem } from "./components";
-import styles from "./styles.module.scss";
+import { User } from 'firebase/auth';
+import { useRef, useEffect } from 'react';
+import { IMessage } from 'types/chat.types';
+import { MessageItem } from './components';
+import styles from './styles.module.scss';
 
 interface IMessages {
   messages: IMessage[];
@@ -16,7 +16,7 @@ const Messages = ({ messages, user }: IMessages) => {
   const getFocus = () => {
     setTimeout(() => {
       if (last.current) {
-        last.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        last.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 500);
   };

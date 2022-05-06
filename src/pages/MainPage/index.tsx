@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useAppSelector } from "hooks/hooks";
-import { useDispatch } from "react-redux";
-import { MainLayout } from "layouts";
-import { loadPeopleDataRequestAction } from "store/reducers/people/actions";
-import Filter from "./Filter";
-import Paginator from "./Paginator";
-import TablePeople from "./TablePeople";
-import styles from "./styles.module.scss";
+import { useEffect, useState } from 'react';
+import { useAppSelector } from 'hooks/hooks';
+import { useDispatch } from 'react-redux';
+import { MainLayout } from 'layouts';
+import { loadPeopleDataRequestAction } from 'store/reducers/people/actions';
+import Filter from './Filter';
+import Paginator from './Paginator';
+import TablePeople from './TablePeople';
+import styles from './styles.module.scss';
 
 const MainPage = () => {
   const { page, searchWord, data } = useAppSelector((state) => state.people);
@@ -15,7 +15,6 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(loadPeopleDataRequestAction(params.page, params.searchWord));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
   return (

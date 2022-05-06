@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { useAppSelector } from "hooks/hooks";
-import { HorizonalLoader } from "components";
-import styles from "./styles.module.scss";
+import { Link } from 'react-router-dom';
+import { useAppSelector } from 'hooks/hooks';
+import { HorizonalLoader } from 'components';
+import styles from './styles.module.scss';
 
 const TablePeople = () => {
   const { loading, data } = useAppSelector(({ people }) => people);
@@ -11,7 +11,7 @@ const TablePeople = () => {
     return <span className={styles.emptyList}>Emply list</span>;
 
   return (
-    <table className="highlight">
+    <table className='highlight'>
       <thead>
         <tr>
           <th>Name</th>
@@ -22,7 +22,7 @@ const TablePeople = () => {
       </thead>
       <tbody>
         {data!.results.map(({ name, birth_year, gender, url }) => {
-          const id = url.replaceAll(/\D/g, "");
+          const id = url.replaceAll(/\D/g, '');
           return (
             <tr key={name}>
               <td>{name}</td>

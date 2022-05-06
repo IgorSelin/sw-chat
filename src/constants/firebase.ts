@@ -1,5 +1,5 @@
 export enum ECollections {
-  Main = "sw-chat",
-  Users = "/users",
-  Relations = "relations",
+  Main = 'sw-chat',
+  Users = '/users',
+  Relations = 'relations',
 }

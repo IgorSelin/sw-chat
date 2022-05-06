@@ -1,16 +1,12 @@
-import { PersonDetails } from "services/people/types";
-import { ELoadPerson } from "./types";
+import { PersonDetails } from 'services/people/types';
+import { ELoadPerson } from './types';
 
-export const loadPersonDetailsRequestAction = (id: string) => {
-  return {
+export const loadPersonDetailsRequestAction = (id: string) => ({
     type: ELoadPerson.request,
-    payload: id,
-  };
-};
+    payload: id
+  });
 
-export const loadPersonDetailsSuccessAction = (payload: PersonDetails) => {
-  return {
+export const loadPersonDetailsSuccessAction = (payload: PersonDetails) => ({
     type: ELoadPerson.success,
-    payload,
-  };
-};
+    payload
+  });

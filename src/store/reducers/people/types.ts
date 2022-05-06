@@ -1,9 +1,9 @@
-import { IPeopleResponse } from "services/people/types";
+import { IPeopleResponse } from 'services/people/types';
 
 export enum ELoadPeople {
-  request = "LOAD_PEOPLE_REQUEST",
-  success = "LOAD_PEOPLE_SUCCESS",
-  faiture = "LOAD_PEOPLE_FAILURE",
+  request = 'LOAD_PEOPLE_REQUEST',
+  success = 'LOAD_PEOPLE_SUCCESS',
+  faiture = 'LOAD_PEOPLE_FAILURE',
 }
 
 export interface loadPeopleRequest {
@@ -18,7 +18,7 @@ export interface loadPeopleSuccess {
 
 export interface loadPeopleFailure {
   type: ELoadPeople.faiture;
-  payload: any;
+  payload: string;
 }
 
 export interface IInitialPeopleState {

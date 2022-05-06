@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import styles from "./styles.module.scss";
-import galleryIcon from "assets/img/gallery.webp";
+import { useEffect, useRef, useState } from 'react';
+import styles from './styles.module.scss';
+import galleryIcon from 'assets/img/gallery.webp';
 
 interface ISender {
   sendMessage(value: string): void;
@@ -9,8 +9,8 @@ interface ISender {
 }
 
 const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
-  const [message, setMessage] = useState("");
-  const [imageAsFile, setImageAsFile] = useState("");
+  const [message, setMessage] = useState('');
+  const [imageAsFile, setImageAsFile] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const ref = textareaRef.current;
 
@@ -24,15 +24,17 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
       return;
     }
     sendMessage(message);
-    setMessage("");
-    ref!.style.height = "36px";
+    setMessage('');
+    if (ref) {
+      ref.style.height = '36px';
+    }
   };
 
   useEffect(() => {
     const ref = textareaRef.current;
     if (ref) {
       const scrollHeight = ref.scrollHeight;
-      ref.style.height = scrollHeight + "px";
+      ref.style.height = scrollHeight + 'px';
     }
   }, [message]);
 
@@ -40,7 +42,6 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
     if (imageAsFile) {
       getPhoto(imageAsFile);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageAsFile]);
 
   return (
@@ -52,22 +53,22 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
       />
       <button
         disabled={photoLoading}
-        type="button"
-        className="btn"
+        type='button'
+        className='btn'
         onClick={submitMessageHandler}
       >
         Send
       </button>
-      <label htmlFor="upload-photo">
-        <img src={galleryIcon} alt="open gallery" />
+      <label htmlFor='upload-photo'>
+        <img src={galleryIcon} alt='open gallery' />
       </label>
       <input
-        name="photo"
-        id="upload-photo"
-        accept="image/png, image/gif, image/jpeg"
+        name='photo'
+        id='upload-photo'
+        accept='image/png, image/gif, image/jpeg'
         className={styles.uploadPhoto}
         onChange={handleImageAsFile}
-        type="file"
+        type='file'
       />
     </form>
   );

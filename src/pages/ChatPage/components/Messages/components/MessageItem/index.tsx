@@ -1,10 +1,10 @@
-import React, { forwardRef, useState } from "react";
-import { User } from "firebase/auth";
-import { IMessage } from "types/chat.types";
-import { dateFormatter } from "utils/dateFormatter";
-import { ImageLoader } from "components";
-import styles from "./styles.module.scss";
-import cn from "classnames";
+import React, { forwardRef, useState } from 'react';
+import { User } from 'firebase/auth';
+import { IMessage } from 'types/chat.types';
+import { dateFormatter } from 'utils/dateFormatter';
+import { ImageLoader } from 'components';
+import styles from './styles.module.scss';
+import cn from 'classnames';
 
 interface IMessageItem {
   info: IMessage;
@@ -16,12 +16,12 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
 
   const { name, text, time, photo, file, uid: messageID } = info;
   const [selectedPhoto, setFullSize] = useState<string | null>(null);
-  const isOwner = info.uid === user!.uid;
+  const isOwner = info.uid === user?.uid;
 
   const photoSection = () => (
     <div
       className={cn(styles.photoContainer, {
-        [styles.fullSize]: selectedPhoto === info.uid,
+        [styles.fullSize]: selectedPhoto === info.uid
       })}
       onClick={() => setFullSize((prev) => (prev ? null : messageID))}
     >
@@ -47,9 +47,9 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
     >
       <div
         className={styles.leftSection}
-        style={{ flexDirection: file ? "column" : "row" }}
+        style={{ flexDirection: file ? 'column' : 'row' }}
       >
-        <img src={photo} alt="avatar" className={styles.avatar} />
+        <img src={photo} alt='avatar' className={styles.avatar} />
         <div>
           <div>{name}</div>
           <div className={styles.text}>{text}</div>
