@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MainLayout } from 'layouts';
 import { Messages, Sender } from './components';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { app, auth, db } from 'my-firebase';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { BasicLoader, HorizonalLoader } from 'components';
-import Paths from 'constants/path';
 import { IMessage } from 'types/chat.types';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { ECollections } from 'constants/firebase';
 import styles from './styles.module.scss';
+import Paths from 'constants/path';
 
 const ChatPage = () => {
   const [user] = useAuthState(auth);
   const { id } = useParams();
-  const navigate = useNavigate();
   const [photoLoading, setPhotoLoading] = useState(false);
   const [messages, loading] = useCollectionData(
     collection(getFirestore(app), id || ECollections.Main)
@@ -31,12 +30,12 @@ const ChatPage = () => {
         photo: user?.photoURL,
         uid: user?.uid
       });
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
     }
   };
 
-  async function uploadPhoto(value: File) {
+  const uploadPhoto = (value: File) => {
     setPhotoLoading(true);
     const storage = getStorage();
     const storageRef = ref(storage, value.name);
@@ -53,16 +52,18 @@ const ChatPage = () => {
         });
       });
     });
-  }
+  };
 
-  useEffect(() => {
-    if (!user) navigate(Paths.LOGIN);
-  }, [user]);
+  if (!user) {
+    return <Navigate to={Paths.LOGIN} />;
+  }
 
   return (
     <MainLayout>
       {loading ? (
-        <HorizonalLoader />
+        <div className={styles.mainLoader}>
+          <HorizonalLoader />
+        </div>
       ) : (
         <div className={styles.container}>
           {photoLoading && (
