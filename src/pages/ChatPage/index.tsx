@@ -38,23 +38,21 @@ const ChatPage = () => {
 
   async function uploadPhoto(value: File) {
     setPhotoLoading(true);
-    if (value.name) {
-      const storage = getStorage();
-      const storageRef = ref(storage, value.name);
-      uploadBytes(storageRef, value).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((url) => {
-          addDoc(collection(db, id || ECollections.Main), {
-            name: user?.displayName,
-            time: new Date().toISOString(),
-            file: url,
-            photo: user?.photoURL,
-            uid: user?.uid
-          }).then(() => {
-            setPhotoLoading(false);
-          });
+    const storage = getStorage();
+    const storageRef = ref(storage, value.name);
+    uploadBytes(storageRef, value).then(snapshot => {
+      getDownloadURL(snapshot.ref).then(url => {
+        addDoc(collection(db, id || ECollections.Main), {
+          name: user?.displayName,
+          time: new Date().toISOString(),
+          file: url,
+          photo: user?.photoURL,
+          uid: user?.uid
+        }).then(() => {
+          setPhotoLoading(false);
         });
       });
-    }
+    });
   }
 
   useEffect(() => {
@@ -66,21 +64,15 @@ const ChatPage = () => {
       {loading ? (
         <HorizonalLoader />
       ) : (
-        user && (
-          <div className={styles.container}>
-            {photoLoading && (
-              <div className={styles.loaderContainer}>
-                <BasicLoader />
-              </div>
-            )}
-            <Messages messages={messages as IMessage[]} user={user} />
-            <Sender
-              sendMessage={sendMessage}
-              getPhoto={uploadPhoto}
-              photoLoading={photoLoading}
-            />
-          </div>
-        )
+        <div className={styles.container}>
+          {photoLoading && (
+            <div className={styles.loaderContainer}>
+              <BasicLoader />
+            </div>
+          )}
+          <Messages messages={messages as IMessage[]} user={user} />
+          <Sender sendMessage={sendMessage} getPhoto={uploadPhoto} photoLoading={photoLoading} />
+        </div>
       )}
     </MainLayout>
   );

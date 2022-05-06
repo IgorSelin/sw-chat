@@ -36,20 +36,20 @@ export const config = [
 ];
 
 export const getRouteConfig = (value: string) => {
-  const route = config.find(({ path }) => path === value)!
+  const route = config.find(({ path }) => path === value)!;
   const { element, ...rest } = route;
   return rest.path;
 };
 
 const ConfigedRoutes = () => (
-    <BrowserRouter>
-      <Routes>
-        {config.map((item, index) => (
-          <Route key={index} {...item} />
-        ))}
-        <Route path='*' element={<Pages.NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  <BrowserRouter>
+    <Routes>
+      {config.map((item, index) => (
+        <Route key={index} {...item} />
+      ))}
+      <Route path='*' element={<Pages.NotFoundPage />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default ConfigedRoutes;

@@ -13,7 +13,6 @@ interface IMessageItem {
 }
 
 const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
-
   const { name, text, time, photo, file, uid: messageID } = info;
   const [selectedPhoto, setFullSize] = useState<string | null>(null);
   const isOwner = info.uid === user?.uid;
@@ -23,7 +22,7 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
       className={cn(styles.photoContainer, {
         [styles.fullSize]: selectedPhoto === info.uid
       })}
-      onClick={() => setFullSize((prev) => (prev ? null : messageID))}
+      onClick={() => setFullSize(prev => (prev ? null : messageID))}
     >
       <ImageLoader src={info.file} />
     </div>
@@ -41,14 +40,8 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
       </div>
     </div>
   ) : (
-    <div
-      className={styles.messageItem}
-      ref={ref as React.ForwardedRef<HTMLDivElement>}
-    >
-      <div
-        className={styles.leftSection}
-        style={{ flexDirection: file ? 'column' : 'row' }}
-      >
+    <div className={styles.messageItem} ref={ref as React.ForwardedRef<HTMLDivElement>}>
+      <div className={styles.leftSection} style={{ flexDirection: file ? 'column' : 'row' }}>
         <img src={photo} alt='avatar' className={styles.avatar} />
         <div>
           <div>{name}</div>

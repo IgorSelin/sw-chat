@@ -9,7 +9,7 @@ import { linkItems } from './constants';
 import styles from './styles.module.scss';
 
 const PersonDetails = () => {
-  const { data, loading } = useAppSelector((s) => s.userDetails);
+  const { data, loading } = useAppSelector(({ userDetails }) => userDetails);
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -28,10 +28,7 @@ const PersonDetails = () => {
             {Object.entries(data).map(([key, val]) =>
               val.length > 0 ? (
                 <li key={key} className='collection-item'>
-                  <span className={styles.tableKeys}>
-                    {key.replaceAll('_', ' ')}
-                  </span>
-                  :{' '}
+                  <span className={styles.tableKeys}>{key.replaceAll('_', ' ')}</span>:{' '}
                   {linkItems.includes(key) ? (
                     <a href={typeof val === 'string' ? val : val[0]}>link to</a>
                   ) : (

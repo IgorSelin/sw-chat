@@ -5,7 +5,6 @@ import Paths from 'constants/path';
 import styles from './styles.module.scss';
 
 const MainLayout = ({ children }: { children?: JSX.Element | null }) => {
-  
   const [user] = useAuthState(auth);
 
   return (

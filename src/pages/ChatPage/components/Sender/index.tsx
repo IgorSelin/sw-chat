@@ -51,12 +51,7 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
         onChange={({ target }) => setMessage(target.value)}
         value={message}
       />
-      <button
-        disabled={photoLoading}
-        type='button'
-        className='btn'
-        onClick={submitMessageHandler}
-      >
+      <button disabled={photoLoading} type='button' className='btn' onClick={submitMessageHandler}>
         Send
       </button>
       <label htmlFor='upload-photo'>

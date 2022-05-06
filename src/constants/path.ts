@@ -5,7 +5,7 @@ enum Paths {
   MAIN_CHAT = '/chat',
   LOGIN = '/login',
   SELECTED_CHAT = '/chat/:id',
-  USERS = '/users',
+  USERS = '/users'
 }
 
 export default Paths;

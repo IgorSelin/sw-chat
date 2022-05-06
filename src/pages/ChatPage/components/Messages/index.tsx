@@ -23,9 +23,7 @@ const Messages = ({ messages, user }: IMessages) => {
 
   useEffect(getFocus, [messages]);
 
-  const sorted = messages.sort(
-    (a, b) => (new Date(a.time) as any) - (new Date(b.time) as any)
-  );
+  const sorted = messages.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
 
   return (
     <div className={styles.messages} ref={container}>

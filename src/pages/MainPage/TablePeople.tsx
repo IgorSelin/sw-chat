@@ -7,8 +7,7 @@ const TablePeople = () => {
   const { loading, data } = useAppSelector(({ people }) => people);
 
   if (loading) return <HorizonalLoader />;
-  if (data!.results.length === 0)
-    return <span className={styles.emptyList}>Emply list</span>;
+  if (data!.results.length === 0) return <span className={styles.emptyList}>Emply list</span>;
 
   return (
     <table className='highlight'>

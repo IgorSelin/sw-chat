@@ -6,14 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut
 } from 'firebase/auth';
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc
-} from 'firebase/firestore';
+import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
 
 const app = initializeApp({
   apiKey: 'AIzaSyADsG2JaINEy9v49fTVF6V_ikMfvFuTqkY',
