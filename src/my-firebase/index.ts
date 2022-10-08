@@ -7,6 +7,7 @@ import {
   signOut
 } from 'firebase/auth';
 import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 const app = initializeApp({
   apiKey: 'AIzaSyADsG2JaINEy9v49fTVF6V_ikMfvFuTqkY',
@@ -51,5 +52,32 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
 const logout = () => {
   signOut(auth);
 };
+
+const messaging = getMessaging(app);
+
+export const getTokens = (setTokenFound: any) =>
+  getToken(messaging, {
+    vapidKey:
+      'BLPKB6oz97ZJ0b1iJo-61mUIY2ZqtU51vH6_BCFGnofhCDpCoDnaKLsy7rmgoHWh36QKqPGvDhu5kB8YwzjXVvU'
+  })
+    .then(currentToken => {
+      if (currentToken) {
+        console.log('current token for client: ', currentToken);
+        setTokenFound(true);
+      } else {
+        console.log('No registration token available. Request permission to generate one.');
+        setTokenFound(false);
+      }
+    })
+    .catch(err => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+
+export const onMessageListener = () =>
+  new Promise(resolve =>
+    onMessage(messaging, payload => {
+      resolve(payload);
+    })
+  );
 
 export { auth, db, app, signInWithGoogle, logInWithEmailAndPassword, logout };
