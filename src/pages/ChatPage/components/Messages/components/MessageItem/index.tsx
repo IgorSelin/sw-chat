@@ -18,13 +18,15 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
   const isOwner = info.uid === user?.uid;
 
   const photoSection = () => (
-    <div
-      className={cn(styles.photoContainer, {
-        [styles.fullSize]: selectedPhoto === info.uid
-      })}
-      onClick={() => setFullSize(prev => (prev ? null : messageID))}
-    >
-      <ImageLoader src={info.file} />
+    <div onClick={() => setFullSize(prev => (prev ? null : messageID))}>
+      <div className={styles.photoContainer}>
+        <ImageLoader src={info.file} />
+      </div>
+      {selectedPhoto === info.uid && (
+        <div className={styles.fullSize}>
+          <img src={info.file} />
+        </div>
+      )}
     </div>
   );
 

@@ -30,6 +30,14 @@ const ChatPage = () => {
         photo: user?.photoURL,
         uid: user?.uid
       });
+      await addDoc(collection(db, ECollections.lastMessages), {
+        name: user?.displayName,
+        text: value,
+        to: id,
+        time: new Date().toISOString(),
+        photo: user?.photoURL,
+        uid: user?.uid
+      });
     } catch (err) {
       console.error(err);
     }
