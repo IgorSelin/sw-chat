@@ -1,9 +1,6 @@
 import * as eff from 'redux-saga/effects';
 import { ELoadPeople, loadPeopleRequest } from 'store/reducers/people/types';
-import {
-  ELoadPerson,
-  loadPersonDetailsRequestType
-} from 'store/reducers/userDetails/types';
+import { ELoadPerson, loadPersonDetailsRequestType } from 'store/reducers/userDetails/types';
 import * as Enpdoints from 'services/people/people.endpoints';
 import * as PersonAction from 'store/reducers/userDetails/actions';
 import * as LoadPeopleAction from 'store/reducers/people/actions';
@@ -25,6 +22,7 @@ export function* loadPeopleList(action: loadPeopleRequest) {
     );
     yield eff.put(LoadPeopleAction.loadPeopleDataSuccessAction(data));
   } catch (e) {
+    console.log(e);
   }
 }
 export function* peopleSaga() {

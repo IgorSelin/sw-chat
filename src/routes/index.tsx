@@ -10,7 +10,7 @@ export const config = [
   },
   {
     exact: true,
-    path: Paths.PERSON_DETAILTS,
+    path: Paths.PERSON_DETAILS,
     element: <Pages.PersonDetails />
   },
   {
@@ -26,7 +26,7 @@ export const config = [
   {
     exact: true,
     path: Paths.SELECTED_CHAT,
-    element: <Pages.SelectedChat />
+    element: <Pages.ChatPage />
   },
   {
     exact: true,

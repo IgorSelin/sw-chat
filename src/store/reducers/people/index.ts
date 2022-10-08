@@ -15,10 +15,7 @@ const initialState: IInitialPeopleState = {
   }
 };
 
-export const peopleReducer = (
-  state = initialState,
-  action: loadPeopleActionTypes
-) => {
+export const peopleReducer = (state = initialState, action: loadPeopleActionTypes) => {
   switch (action.type) {
     case ELoadPeople.request:
       const { page, searchWord } = action.payload;

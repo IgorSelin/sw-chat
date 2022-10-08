@@ -9,7 +9,7 @@ import TablePeople from './TablePeople';
 import styles from './styles.module.scss';
 
 const MainPage = () => {
-  const { page, searchWord, data } = useAppSelector(state => state.people);
+  const { page, searchWord, data } = useAppSelector(({ people }) => people);
   const [params, setParams] = useState({ page, searchWord });
   const dispatch = useDispatch();
 

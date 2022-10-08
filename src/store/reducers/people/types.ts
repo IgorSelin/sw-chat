@@ -3,7 +3,7 @@ import { IPeopleResponse } from 'services/people/types';
 export enum ELoadPeople {
   request = 'LOAD_PEOPLE_REQUEST',
   success = 'LOAD_PEOPLE_SUCCESS',
-  faiture = 'LOAD_PEOPLE_FAILURE',
+  faiture = 'LOAD_PEOPLE_FAILURE'
 }
 
 export interface loadPeopleRequest {
@@ -29,7 +29,4 @@ export interface IInitialPeopleState {
   data: IPeopleResponse | null;
 }
 
-export type loadPeopleActionTypes =
-  | loadPeopleRequest
-  | loadPeopleSuccess
-  | loadPeopleFailure;
+export type loadPeopleActionTypes = loadPeopleRequest | loadPeopleSuccess | loadPeopleFailure;

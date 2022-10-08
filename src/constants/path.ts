@@ -1,6 +1,6 @@
 enum Paths {
   HOME = '/',
-  PERSON_DETAILTS = '/people/:id',
+  PERSON_DETAILS = '/people/:id',
   CONTACT_US = '/contact-us',
   MAIN_CHAT = '/chat',
   LOGIN = '/login',

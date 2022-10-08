@@ -2,7 +2,7 @@ import { PersonDetails } from 'services/people/types';
 export enum ELoadPerson {
   request = 'LOAD_PERSON_DETAILS_REQUEST',
   success = 'LOAD_PERSON_DETAILS_SUCCESS',
-  failure = 'LOAD_PERSON_DETAILS_FAILURE',
+  failure = 'LOAD_PERSON_DETAILS_FAILURE'
 }
 
 export interface loadPersonDetailsRequestType {
