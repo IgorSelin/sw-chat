@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import * as Pages from 'pages';
 import Paths from 'constants/path';
 import { onMessageListener } from 'my-firebase';
-
+import ReactGA from 'react-ga4';
 export const config = [
   {
     exact: true,
@@ -43,6 +43,12 @@ export const getRouteConfig = (value: string) => {
 };
 
 const ConfigedRoutes = () => {
+  ReactGA.initialize('G-7WM3MYLXPJ');
+  ReactGA.send({
+    hitType: 'pageview',
+    page: window.location.pathname + window.location.search
+  });
+
   onMessageListener()
     .then((payload: any) => console.log(payload))
     .catch(err => console.log('failed: ', err));
