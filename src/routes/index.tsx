@@ -43,12 +43,6 @@ export const getRouteConfig = (value: string) => {
 };
 
 const ConfigedRoutes = () => {
-  ReactGA.initialize('G-7WM3MYLXPJ');
-  ReactGA.send({
-    hitType: 'pageview',
-    page: window.location.pathname + window.location.search
-  });
-
   onMessageListener()
     .then((payload: any) => console.log(payload))
     .catch(err => console.log('failed: ', err));
